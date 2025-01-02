@@ -36,7 +36,7 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ## Coding the Game Functionalities in R
 
-![Adri](/Photos/zumaya.jpeg?raw=true "Zumaya")
+![spain](/Photos/sp2.JPG?raw=true "spain")
 
 ### Generate Starting Board
 
@@ -58,5 +58,5 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ## Conclusion and Future Considerations
 
-![spain](/Photos/sp2.JPG?raw=true "spain")
+![Adri](/Photos/zumaya.jpeg?raw=true "Zumaya")
 
