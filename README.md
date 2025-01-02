@@ -9,6 +9,8 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ### Table of Contents
 
+![break](/Photos/sp1.jpg?raw=true "Break")
+
 - About 2048
   - Game Origin
   - Rules and Playing the Game
@@ -34,6 +36,8 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ## Coding the Game Functionalities in R
 
+![Adri](/Photos/zumaya.jpeg?raw=true "Zumaya")
+
 ### Generate Starting Board
 
 ### Horizontal and Lateral Movements with Merges
@@ -53,3 +57,6 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 ### Kaplan-Meyer Survival Curve
 
 ## Conclusion and Future Considerations
+
+![spain](/Photos/sp2.JPG?raw=true "spain")
+
