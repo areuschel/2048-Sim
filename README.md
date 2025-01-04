@@ -7,16 +7,16 @@ The game 2048 was a staple of my childhood, one of the few non-blocked games I c
 
 My proof...
 
-![break](/Photos/highscore.jpg?raw=true "Break")
+![break](/Photos/highscore.png?raw=true "Break")
 
 #### 📍 Study Goal
 My simulation study aims to learn how different strategies perform as the probability of generating a new tile with the value ‘2’ changes. I explore 4 strategies and compare their performance at each tile generation setting by investigating the game score, final board, and total number of moves made.
 - See 'About 2048' section below to learn the rules if you are unfamiliar with the game.
 
-![image](https://github.com/user-attachments/assets/f14d6465-86bb-4fa7-9288-60651b1a3830)
-
-
 ## Language & Utilities
+- RStudio
+- tidyverse
+- survival
 
 ## Project Walk-Through
 
