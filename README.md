@@ -48,13 +48,23 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ### Simulating Games of 2048
 
+![break](/Plots/sim2048.JPEG?raw=true "Break")
+
 ## Results
 
 ### Estimated Densities
 
+![break](/Plots/comp1.JPEG?raw=true "Break")
+
+![break](/Plots/comp2.JPEG?raw=true "Break")
+
 ### Relationship between Moves and Score
 
+![break](/Plots/scatter.JPEG?raw=true "Break")
+
 ### Kaplan-Meyer Survival Curve
+
+![break](/Plots/surv.JPEG?raw=true "Break")
 
 ## Conclusion and Future Considerations
 
