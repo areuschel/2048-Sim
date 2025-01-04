@@ -47,9 +47,27 @@ My simulation study aims to learn how different strategies perform as the probab
 
 ### Rules and Playing the Game
 
-The game is played on a 4x4 tile board, where tile numbers increase as identical numbers are combined. Two tiles with the value ‘2’ spawn in random places to start the game, and a new tile is generated each time you move in any cardinal direction. The new tile that generates with each move is either a ‘2’ or a ‘4’. The game continues until the entire board is full of tiles and none of them can be combined by a move in any direction. 
+#### Basic Understanding
+The game is played on a 4x4 tile board, where tile numbers increase as identical numbers are combined. The goal is to combine tiles to create the number '2048'. Each move adds another tile to the board, so you need to be combining tiles frequently enough the board doesn't fill with tiles that cannot be combined.
 
-The default settings of the game have the probability of generating a ‘2’ at 90% and generating a ‘4’ at 10% for new tiles. 
+#### Playing the Game
+1. START
+    - Two tiles with the value ‘2’ spawn in random places to start the game
+2. GAMEPLAY
+    - Move ALL tiles in any cardinal direction by swiping (mobile version) or with ⬆️ ⬇️ ➡️ ⬅️ arrows (PC)
+    - A new tile is randomly generated each time you move in any of the available spaces on the board
+      - This new tile will either be a '2' or a '4'
+        - The default settings of the game have the probability of generating a ‘2’ at 90% and generating a ‘4’ at 10% for new tiles
+    - Tiles that are of the same number will be combined (if any!) in the direction chosen
+      - Tiles will be combined furthest to the direction chosen
+        - Example row) 2 2 2 4
+          - chosen move = ➡️
+          - outcome = NA 2 4 4
+4. END
+   - The game is over when the entire board is ...
+     - (1) full of tiles AND
+     - (2) none of the tiles can be combined by a move in any direction
+
 
 ## Coding the Game Functionalities in R
 
