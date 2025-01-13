@@ -45,6 +45,10 @@ My simulation study aims to learn how different strategies perform as the probab
 
 ### Game Origin
 
+Italian web developer Gabriele Cirulli created the game in 2014. It quickly gained popularity, reaching 4 million visitors in less than a week of its release. 
+
+More variations of the game have been developed and are free to play online, including a version that lets you undo moves. However, I much prefer the original gameplay.
+
 ### Rules and Playing the Game
 
 #### Basic Understanding
@@ -75,12 +79,226 @@ The game is played on a 4x4 tile board, where tile numbers increase as identical
 
 ### Generate Starting Board
 
+The code block below shows how I generated random starting boards for my simulation.
+
+```{r}
+# setup the board
+board <- matrix(data = NA, nrow = 4, ncol = 4)
+
+# randomly generate 2's in any space in the matrix:
+# generate tiles without replacement from 1-16
+# 1-4 = col 1
+# 5-8 = col 2
+# 9-12 = col 3
+# 13-16 = col 4
+
+initial <- sample(1:16, 2, replace = FALSE)
+
+# convert sampled num's to matrix positions
+# arrayInd()
+
+init_board <- arrayInd(initial, .dim = c(4,4))
+
+# place in board
+board[init_board] = 2
+
+# check
+print(board)
+```
+
 ### Horizontal and Lateral Movements with Merges
+
+### ➡️
+Function to move the tiles to the right.
+```{r}
+right <- function(board){
+  for(row in 1:4){
+    # find the tiles that contain numbers
+    filled_tiles <- board[row, !is.na(board[row,])]
+    
+    # clear the current row
+    board[row, ] <- NA
+    
+    # fill the cells closest to the right with the values found above
+    if (length(filled_tiles) > 0) {
+      start <- 4 - length(filled_tiles) + 1
+      if (start >= 1 && start <= 4) {
+        board[row, start:4] <- filled_tiles
+      }
+    }
+
+    # merge values if identical (right to left if more than 2 in a row)
+    for(col in 4:2){
+      # check if they match
+      if(!is.na(board[row,col]) && !is.na(board[row, col-1]) && board[row,col] == board[row, col-1]){
+        board[row, col] <- board[row, col] * 2
+        board[row, col - 1] <- NA
+      }
+    }
+    # do the shift again
+    filled_tiles <- board[row, !is.na(board[row,])]
+    board[row, ] <- NA
+    
+    # fill the cells closest to the right
+    if (length(filled_tiles) > 0) {
+      start <- 4 - length(filled_tiles) + 1
+      if (start >= 1 && start <= 4) {
+        board[row, start:4] <- filled_tiles
+      }
+    }
+  }
+  return(board)
+}
+
+```
+### ⬅️
+Function to move the tiles to the left.
+(Same logic as above, comments ommitted)
+```{r}
+left <- function(board){
+  for(row in 1:4){
+    filled_tiles <- board[row, !is.na(board[row,])]
+    
+    board[row, ] <- NA
+    
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      if (endr >= 1 && endr <= 4) {
+        board[row, 1:endr] <- filled_tiles
+      }
+    }
+
+    for(col in 1:3){
+      if(!is.na(board[row,col]) && !is.na(board[row, col+1]) && board[row,col] == board[row, col+1]){
+        board[row, col] <- board[row, col] * 2
+        board[row, col + 1] <- NA
+      }
+    }
+    filled_tiles <- board[row, !is.na(board[row,])]
+    board[row, ] <- NA
+    
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      if (endr >= 1 && endr <= 4) {
+        board[row, 1:endr] <- filled_tiles
+      }
+    }
+  }
+  return(board)
+}
+```
+
+### ⬆️
+Function to move the tiles upward.
+```{r}
+up <- function(board) {
+  for (col in 1:4) {
+    # find tiles in each column
+    filled_tiles <- board[!is.na(board[, col]), col]
+    board[, col] <- NA
+    
+    # fill tiles closest to the top with values found above
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      if (endr >= 1 && endr <= 4) {
+        board[1:endr, col] <- filled_tiles
+      }
+    }
+    
+    # merge
+    for (row in 1:3) {
+      if (!is.na(board[row, col]) && !is.na(board[row + 1, col]) && board[row, col] == board[row + 1, col]) {
+        board[row, col] <- board[row, col] * 2
+        board[row + 1, col] <- NA
+      }
+    }
+    
+    # shift again
+    filled_tiles <- board[!is.na(board[, col]), col]
+    board[, col] <- NA
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      if (endr >= 1 && endr <= 4) {
+        board[1:endr, col] <- filled_tiles
+      }
+    }
+  }
+  return(board)
+}
+
+```
+
+### ⬇️
+Function to move the tiles downward.
+(Same logic as above, comments ommitted)
+
+```{r}
+down <- function(board) {
+  for (col in 1:4) {
+    filled_tiles <- board[!is.na(board[, col]), col]
+    board[, col] <- NA
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      board[(5 - endr):4, col] <- filled_tiles
+    }
+    
+    for (row in 3:1) {  # start at third row
+      if (!is.na(board[row, col]) && !is.na(board[row + 1, col]) && board[row, col] == board[row + 1, col]) {
+        board[row + 1, col] <- board[row, col] * 2  
+        board[row, col] <- NA  # original tile to NA
+      }
+    }
+    
+    filled_tiles <- board[!is.na(board[, col]), col]
+    board[, col] <- NA
+    if (length(filled_tiles) > 0) {
+      endr <- length(filled_tiles)
+      board[(5 - endr):4, col] <- filled_tiles
+    }
+  }
+  return(board)
+}
+```
 
 ### New Tile Random Generation
 
+The function below takes a probability vector so that simulated games can test the outcomes using different probabilities. The game's default new tile generation is 90% '2' and 10% '4'.
+```{r}
+# game default ... p2=0.9
+new_tile <- function(board, p_gen = p){
+  # find open spaces
+  open <- which(is.na(board), arr.ind = TRUE)
+  # randomly select a space to fill
+  if(nrow(open) > 0){
+    selected <- open[sample(1:nrow(open), 1), ]
+    # fill the space with 2 or 4
+    fill_value <- ifelse(runif(1)<=p_gen, 2, 4)
+    board[selected[1], selected[2]] <- fill_value
+  }
+  return(board)
+}
+```
+
+
 ### Implemented Strategies for Simulation Study
-First, a strategy where each move is chosen randomly. This was the simplest to begin with. I then test two repetitive strategies: one where the preferred move sequence is ‘down-left-down-left’ and another that switches between ‘left-right-left-right’ and ‘up-down-up-down’. For both of these strategies, if the next move in the sequence doesn’t change the board, a random move is selected to continue the game before returning to the original sequence. Lastly, I attempt to simplify my own strategy to the game.
+
+I coded 4 strategies to compare performance in simulated games against different new tile generation probabilities. The strategies are described below:
+
+1. Random
+    - Each move is randomly selected from the four movement functions.
+3. Basic corner (AKA basic in data viz)
+    - Preferred move sequence: down-left-down-left
+    - If any move in the sequence doesn't change the board, a random move is selected before returning to the preferred sequence
+5. Swap
+    - Preferred move sequence: left-right, up-down 🔁
+      - "swaps" from lateral and horizontal sequences
+    - If any move in the sequence doesn't change the board, a random move is selected before returning to the preferred sequence
+7. Adri (My simplified strategy)
+    - Preferred move sequence: right-right, down-down
+    - If any move in the sequence doesn't change the board, the next preferred move is up
+      - If that doesn't change it either, moving left is the last resort
+
+
 
 ### Simulating Games of 2048
 
