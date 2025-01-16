@@ -408,8 +408,8 @@ I like this plot because it shows that a game with 500 moves can result in a sco
 
 ![break](/Plots/surv.JPEG?raw=true "Break")
 
-The insights from this plot are consistent with the other findings
-- The ‘swap’ and ‘random’ strategies are much less likely to survive at each move than the basic corner strategy and my own. 
+The insights from this plot are consistent with the other findings.
+- The ‘swap’ and ‘random’ strategies are much less likely to survive at each move than the basic corner strategy and my own 
 - For example, at 100 moves into a game, the probability of surviving for each strategy is estimated as follows:
   - Sswap(100) ≅ 0.2
   - Srandom(100) ≅ 0.37
@@ -422,3 +422,16 @@ The insights from this plot are consistent with the other findings
 
 ![Adri](/Photos/zumaya.jpeg?raw=true "Zumaya")
 
+#### 🔎 Limitations
+
+The main limitation to this study was the difficulty of hard-coding strategies for a game that requires many different ‘checks’ based on how the random variables are interacting with the current board. I wanted to add many more ‘rules’ to the Adri strategy, but even just setting a preferred move sequence took a lot of time and work to ensure it was performing properly. 
+
+Despite this, I was pleased to see that even the simple version of my strategy performed better than the other three. 
+
+#### 🔎 Improvements
+
+Another thing that would have improved this project would be the use of parallelization for speeding up the simulations. For over 90,000 games to be simulated, each with different strategies and probabilities, it would have been a good application for parallelization since the games are all independent of each other. It took my simulations approximately 15 minutes to complete, which could be cut down by splitting the job between cores.
+
+#### 📍 Final Words
+
+2048 has existed for over a decade now, and new variations of the game have been made available to play online. Doing this study has made me think about ways the game could be expanded to a larger grid, with maybe more than just two tile options for generating new values. It has also helped me to understand the mechanics of the default game better, and it’s lit a new fire to reach the 8192 tile. Thanks for taking the time to read through this project!
