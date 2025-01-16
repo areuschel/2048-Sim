@@ -402,16 +402,21 @@ One of the simulated games reached the 2048 tile! The final board is shown below
 
 ![break](/Plots/scatter.JPEG?raw=true "Break")
 
-We already know that each time a move is made, the baseline score increases by either 2 or 4 for the new tile generated. The reason score and moves are two separate variables being measured is that each time a tile is combined, it gives new space for more tiles to generate. 
-- For example, if you have a strategy that makes illogical moves, it might trap small values in pockets of different tiles and fill up the board
-  - This means games with the same number of moves can get different scores.
-
 I like this plot because it shows that a game with 500 moves can result in a score as low as 1000 or, double that, 2000, putting more weight on the importance of strategy as you play the game rather than simply trying to swipe as long as possible.
-
 
 ### Kaplan-Meyer Survival Curve
 
 ![break](/Plots/surv.JPEG?raw=true "Break")
+
+The insights from this plot are consistent with the other findings
+- The ‘swap’ and ‘random’ strategies are much less likely to survive at each move than the basic corner strategy and my own. 
+- For example, at 100 moves into a game, the probability of surviving for each strategy is estimated as follows:
+  - Sswap(100) ≅ 0.2
+  - Srandom(100) ≅ 0.37
+  - Sbasic(100) ≅ 0.77
+  - Sadri(100) ≅ 0.82
+- This is plot shows more evidence that my simplified game strategy performs better than the basic corner strategy and that the random and swap methods do not lead to high game scores
+
 
 ## Conclusion and Future Considerations
 
