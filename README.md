@@ -368,9 +368,38 @@ One of the simulated games reached the 2048 tile! The final board is shown below
 
 ### Estimated Densities
 
+#### Game performance with new tile generation probabilities
 ![break](/Plots/comp1.JPEG?raw=true "Break")
 
+#### 💡 Importance of random value generation
+- The plots above reveal that the highest values for both performance metrics occur when randomness in value generation is eliminated (p=0 or p=1)
+  - (* Note: not <b>all</b> randomness is eliminated—the empty tile which the selected value will fill is still selected at random)
+
+#### 💡 Best perfoming strategy
+- My ‘Adri’ strategy performs best for nearly all generation probabilities
+
+#### 💡 Maximizing Time
+- The plot for expected number of moves has a defined U-shape
+  - This shows that this feature is minimized by balancing the frequency of '2's and '4's that generate with each move
+  - This minimum value falls somewhere around 0.2 or 0.3, and the expected values increase intuitively after this point since smaller values are more likely to generate--requiring more moves to combine tiles to higher values
+- An argument for the default settings (p=0.9)
+  - Maximizes the number of moves that can be made without eliminating one of the game’s two random variables (generation location & tile value)
+  - Provides more opportunities to combine tiles, achieve higher scores, and prolong the game, enhancing its overall appeal and addictive nature
+
+
+#### Game performance estimated kernal desnities
 ![break](/Plots/comp2.JPEG?raw=true "Break")
+
+#### ❌ Worst strategies, based on the density plots above
+- The ‘Swap’ strategy has a narrow distribution for both score and number of moves, peaking at low values for both
+  - This means the strategy is consistent, but poor performing
+- The ‘Random’ strategy exhibits a little more spread in both features, but still performs poorly overall
+
+#### ✅ Best strategies, based on the density plots above
+- The final two methods performed the best: the ‘Basic’—which prefers a sequence to force the tiles in a corner, and ‘Adri’— my  simplified strategy
+  - My strategy has more spread and higher density bleeding into the high score ranges
+    - This is a desirable outcome for generalizing a strategy since it more often allows the player to continue the game further in both moves and increasing score
+
 
 ### Relationship between Moves and Score
 
