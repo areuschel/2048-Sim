@@ -375,13 +375,12 @@ One of the simulated games reached the 2048 tile! The final board is shown below
 - The plots above reveal that the highest values for both performance metrics occur when randomness in value generation is eliminated (p=0 or p=1)
   - (* Note: not <b>all</b> randomness is eliminated—the empty tile which the selected value will fill is still selected at random)
 
-#### Maximizing Time
+#### Maximizing time
 - The plot for expected number of moves has a defined U-shape
-  - This shows that this feature is minimized by balancing the frequency of '2's and '4's that generate with each move
   - This minimum value falls somewhere around 0.2 or 0.3, and the expected values increase intuitively after this point since smaller values are more likely to generate--requiring more moves to combine tiles to higher values
 - An argument for the default settings (p=0.9)
-  - Maximizes the number of moves that can be made without eliminating one of the game’s two random variables (generation location & tile value)
-  - Provides more opportunities to combine tiles, achieve higher scores, and prolong the game, enhancing its overall appeal and addictive nature
+  - Maximizes the number of moves that can be made <b>without eliminating</b> one of the game’s two random variables (generation location & tile value)
+    - This provides more opportunities to combine tiles, achieve higher scores, and prolong the game, enhancing its overall appeal and addictive nature
 
 
 #### Game performance estimated kernal desnities
