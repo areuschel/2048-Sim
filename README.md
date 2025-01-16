@@ -43,13 +43,13 @@ My simulation study aims to learn how different strategies perform as the probab
 
 ## About 2048
 
-### Game Origin
+### 🕹️ Game Origin
 
 Italian web developer Gabriele Cirulli created the game in 2014. It quickly gained popularity, reaching 4 million visitors in less than a week of its release. 
 
 More variations of the game have been developed and are free to play online, including a version that lets you undo moves. However, I much prefer the original gameplay.
 
-### Rules and Playing the Game
+### 🕹️ Rules and Playing the Game
 
 #### Basic Understanding
 The game is played on a 4x4 tile board, where tile numbers increase as identical numbers are combined. The goal is to combine tiles to create the number '2048'. Each move adds another tile to the board, so you need to be combining tiles frequently enough the board doesn't fill with tiles that cannot be combined.
@@ -77,7 +77,7 @@ The game is played on a 4x4 tile board, where tile numbers increase as identical
 
 ![spain](/Photos/sp2.JPG?raw=true "spain")
 
-### Generate Starting Board
+### 👾 Generate Starting Board
 
 The code block below shows how I generated random starting boards for my simulation.
 
@@ -106,7 +106,7 @@ board[init_board] = 2
 print(board)
 ```
 
-### Horizontal and Lateral Movements with Merges
+### 👾 Horizontal and Lateral Movements
 
 ### ➡️
 Function to move the tiles to the right.
@@ -149,7 +149,6 @@ right <- function(board){
   }
   return(board)
 }
-
 ```
 ### ⬅️
 Function to move the tiles to the left.
@@ -225,7 +224,6 @@ up <- function(board) {
   }
   return(board)
 }
-
 ```
 
 ### ⬇️
@@ -260,7 +258,7 @@ down <- function(board) {
 }
 ```
 
-### New Tile Random Generation
+### 👾 New Tile Random Generation
 
 The function below takes a probability vector so that simulated games can test the outcomes using different probabilities. The game's default new tile generation is 90% '2' and 10% '4'.
 ```{r}
@@ -280,9 +278,9 @@ new_tile <- function(board, p_gen = p){
 ```
 
 
-### Implemented Strategies for Simulation Study
+### 🧩 Implemented Strategies for Simulation Study
 
-I coded 4 strategies to compare performance in simulated games against different new tile generation probabilities. The strategies are described below:
+I programmed 4 strategies to compare performance in simulated games against different new tile generation probabilities. The strategies are described below:
 
 1. Random
     - Each move is randomly selected from the four movement functions.
@@ -300,7 +298,69 @@ I coded 4 strategies to compare performance in simulated games against different
 
 
 
-### Simulating Games of 2048
+### 🧑🏼‍💻 Simulating Games of 2048
+
+#### 1. Create DF to store outcomes
+```{r}
+# number of simulations (for each strategy @ each probability)
+n_sim <- 2100
+
+results_df <- data.frame(
+  strat = character(),
+  p_gen = numeric(),
+  moves = integer(),
+  score = integer(),
+  final_board = I(list())
+)
+```
+
+#### 2. Set a seed
+
+```{r}
+set.seed(2048)
+```
+
+#### 3. Set up probability vector and strategies
+```{r}
+# generation values
+p_gen_values <- c(0, 0.1, 0.2, 0.3,0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)
+
+# strategy functions
+strategies <- list(
+  adri = adri_sim,  
+  basic_corner = DL_sim,
+  rando = random_sim,
+  swap = swap_sim
+)
+```
+
+#### 4. Simulate games
+```{r}
+for (p in p_gen_values) {
+  for (strategy_name in names(strategies)) {
+    strategy_function <- strategies[[strategy_name]]
+    
+    for (sim in 1:n_sim) {
+      simulation_results <- strategy_function(p_gen = p)
+      
+      results_df <- rbind(
+        results_df,
+        data.frame(
+          strat = strategy_name,
+          p_gen = p,
+          moves = simulation_results$`Total moves`,
+          score = simulation_results$`Game score`,
+          final_board = I(list(simulation_results$`Final board`))
+        )
+      )
+    }
+  }
+}
+```
+
+#### 2048!
+
+One of the simulated games reached the 2048 tile! The final board is shown below.
 
 ![break](/Plots/sim2048.JPEG?raw=true "Break")
 
