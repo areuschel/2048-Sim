@@ -420,8 +420,6 @@ The insights from this plot are consistent with the other findings.
 
 ## Conclusion and Future Considerations
 
-![Adri](/Photos/zumaya.jpeg?raw=true "Zumaya")
-
 #### 🔎 Limitations
 
 The main limitation to this study was the difficulty of hard-coding strategies for a game that requires many different ‘checks’ based on how the random variables are interacting with the current board. I wanted to add many more ‘rules’ to the Adri strategy, but even just setting a preferred move sequence took a lot of time and work to ensure it was performing properly. 
