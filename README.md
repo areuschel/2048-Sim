@@ -3,7 +3,7 @@ Simulation study testing 2048 game outcomes with varying strategies and new tile
 
 ## Project Description
 
-The game 2048 was a staple of my childhood, one of the few non-blocked games I could play on a middle school Chromebook. I still play the game today, using it often to pass time during long commutes in the city. Although the game's primary goal is the 2048 tile, I've been able to reach the 4096 tile, and further iterations are possible.
+The game 2048 was a staple of my childhood, one of the few non-blocked games I could play on a middle school Chromebook. I still play today, using it often to pass time during long commutes in the city. Although the game's primary goal is the 2048 tile, I've been able to reach the 4096 tile, and further iterations are possible.
 
 My proof...
 
@@ -11,7 +11,7 @@ My proof...
 
 #### 📍 Study Goal
 My simulation study aims to learn how different strategies perform as the probability of generating a new tile with the value ‘2’ changes. I explore 4 strategies and compare their performance at each tile generation setting by investigating the game score, final board, and total number of moves made.
-- See 'About 2048' section below to learn the rules if you are unfamiliar with the game.
+- See ['About 2048'](#about-section) section below to learn the rules if you are unfamiliar with the game.
 
 ## Language & Utilities
 - RStudio
@@ -40,6 +40,8 @@ My simulation study aims to learn how different strategies perform as the probab
   - Relationship between Moves and Score
   - Kaplan-Meyer Survival Curve
 - Conclusion and Future Considerations
+
+<a id="about-section"/>
 
 ## About 2048
 
