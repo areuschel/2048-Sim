@@ -7,7 +7,7 @@ The game 2048 was a staple of my childhood, one of the few non-blocked games I c
 
 My proof...
 
-![break](/Photos/highscore.png?raw=true "Break")
+<img src="/Photos/highscore.png" width = 350 />
 
 #### 📍 Study Goal
 My simulation study aims to learn how different strategies perform as the probability of generating a new tile with the value ‘2’ changes. I explore 4 strategies and compare their performance at each tile generation setting by investigating the game score, final board, and total number of moves made.
