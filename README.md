@@ -7,7 +7,7 @@ The game 2048 was a staple of my childhood, one of the few non-blocked games I c
 
 My proof...
 
-<img src="/Photos/highscore.png" width = 350 />
+<img src="/Photos/highscore.png" width = 500 />
 
 #### 📍 Study Goal
 My simulation study aims to learn how different strategies perform as the probability of generating a new tile with the value ‘2’ changes. I explore 4 strategies and compare their performance at each tile generation setting by investigating the game score, final board, and total number of moves made.
@@ -363,12 +363,15 @@ for (p in p_gen_values) {
   }
 }
 ```
+---
 
-#### 2048!
+## 2048!
 
 One of the simulated games reached the 2048 tile! The final board is shown below.
 
-![break](/Plots/sim2048.JPEG?raw=true "Break")
+<img src="/Plots/sim2048.JPEG" width = 500 />
+
+---
 
 <a id="results-section"/>
 
@@ -379,42 +382,39 @@ One of the simulated games reached the 2048 tile! The final board is shown below
 #### Game performance with new tile generation probabilities
 ![break](/Plots/comp1.JPEG?raw=true "Break")
 
-#### Importance of random value generation
-- The plots above reveal that the highest values for both performance metrics occur when randomness in value generation is eliminated (p=0 or p=1)
-  - (* Note: not <b>all</b> randomness is eliminated—the empty tile which the selected value will fill is still selected at random)
+#### Results - Estimated Densities
 
-#### Maximizing time
-- The plot for expected number of moves has a defined U-shape
-  - This minimum value falls somewhere around 0.2 or 0.3, and the expected values increase intuitively after this point since smaller values are more likely to generate--requiring more moves to combine tiles to higher values
-- An argument for the default settings (p=0.9)
-  - Maximizes the number of moves that can be made <b>without eliminating</b> one of the game’s two random variables (generation location & tile value)
-    - This provides more opportunities to combine tiles, achieve higher scores, and prolong the game, enhancing its overall appeal and addictive nature
+| Plot(s)  | Topic  | Finding  |
+|---|---|---|
+| Score & Moves | Random Variables  | The highest values for both performance metrics occur when randomness in value generation is eliminated (p=0 or p=1) (* Note: not <b>all</b> randomness is eliminated—the empty tile which the selected value will fill is still selected at random)|
+| Moves | Game Optimization | U-shape: This minimum value falls somewhere around 0.2 or 0.3, and the expected values increase intuitively after this point since smaller values are more likely to generate--requiring more moves to combine tiles to higher values |
+| Moves | User Experience | Default settings (p=0.9): Maximizes the number of moves that can be made <b>without eliminating</b> one of the game’s two random variables (generation location & tile value). This provides more opportunities to combine tiles, achieve higher scores, and prolong the game, enhancing its overall appeal |
+
 
 
 #### Game performance estimated kernal desnities
 ![break](/Plots/comp2.JPEG?raw=true "Break")
 
-#### ❌ Worst strategies, based on the density plots above
-- The ‘Swap’ strategy has a narrow distribution for both score and number of moves, peaking at low values for both
-  - This means the strategy is consistent, but poor performing
-- The ‘Random’ strategy exhibits a little more spread in both features, but still performs poorly overall
+| Rank | Strategy  | Findings  |
+|---|---|---|
+| 1 | Adri | **Basic Form, Better Choices**: has more spread and higher density bleeding into the high score ranges, desirable outcome for generalizing a strategy since it more often allows the player to continue the game further in both moves and increasing score, performs best for nearly all generation probabilities |
+| 2 | Basic | **Skeleton of a Winning Strategy**: Moving tiles into a corner is one of the most highly utilized strategies for reaching 2048 or higher, these graphs showing evidence that this results in higher scores and moves |
+| 3 | Random | **Better than Swap**: exhibits a little more spread in both features compared to the swap strategy, but still performs poorly overall|
+| 4 | Swap | **Consistent, but low-performing**: narrow distribution for both score and number of moves, peaking at low values for both|
 
-#### ✅ Best strategies, based on the density plots above
-- The final two methods performed the best: the ‘Basic’—which prefers a sequence to force the tiles in a corner, and ‘Adri’— my  simplified strategy
-  - My strategy has more spread and higher density bleeding into the high score ranges
-    - This is a desirable outcome for generalizing a strategy since it more often allows the player to continue the game further in both moves and increasing score
-    - <b>Additionally</b>, my ‘Adri’ strategy performs best for nearly all generation probabilities
 
 
 ### Relationship between Moves and Score
 
-![break](/Plots/scatter.JPEG?raw=true "Break")
+<img src="/Plots/scatter.JPEG" width = 700 />
+
 
 I like this plot because it shows that a game with 500 moves can result in a score as low as 1000 or, double that, 2000, putting more weight on the importance of strategy as you play the game rather than simply trying to swipe as long as possible.
 
 ### Kaplan-Meyer Survival Curve
 
-![break](/Plots/surv.JPEG?raw=true "Break")
+<img src="/Plots/surv.JPEG" width = 700 />
+
 
 The insights from this plot are consistent with the other findings.
 - The ‘swap’ and ‘random’ strategies are much less likely to survive at each move than the basic corner strategy and my own 
@@ -428,16 +428,16 @@ The insights from this plot are consistent with the other findings.
 
 ## Conclusion and Future Considerations
 
-#### 🔎 Limitations
+#### Limitations
 
 The main limitation to this study was the difficulty of hard-coding strategies for a game that requires many different ‘checks’ based on how the random variables are interacting with the current board. I wanted to add many more ‘rules’ to the Adri strategy, but even just setting a preferred move sequence took a lot of time and work to ensure it was performing properly. 
 
 Despite this, I was pleased to see that even the simple version of my strategy performed better than the other three. 
 
-#### 🔎 Improvements
+#### Improvements
 
 Another thing that would have improved this project would be the use of parallelization for speeding up the simulations. For over 90,000 games to be simulated, each with different strategies and probabilities, it would have been a good application for parallelization since the games are all independent of each other. It took my simulations approximately 15 minutes to complete, which could be cut down by splitting the job between cores.
 
-#### 📍 Final Words
+#### Final Words
 
 2048 has existed for over a decade now, and new variations of the game have been made available to play online. Doing this study has made me think about ways the game could be expanded to a larger grid, with maybe more than just two tile options for generating new values. It has also helped me to understand the mechanics of the default game better, and it’s lit a new fire to reach the 8192 tile. Thanks for taking the time to read through this project!
