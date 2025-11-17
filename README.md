@@ -20,26 +20,28 @@ My simulation study aims to learn how different strategies perform as the probab
 
 ## Project Walk-Through
 
-### Table of Contents
-
 ![break](/Photos/sp1.jpg?raw=true "Break")
 
-- About 2048
+
+#### 1. [About 2048](#about-section)
   - Game Origin
   - Rules and Playing the Game
-- Coding the Game Functionalities in R
+
+#### 2. [Coding](#game-section) the Game Functionalities in R
   - Generate Starting Board
   - Horizontal and Lateral Movements with Merges
   - New Tile Random Generation
-- Implemented Strategies for Simulation Study
-- Simulating Games of 2048
-- Results
+
+#### 3. [Simulating](#sim-section) Games of 2048
+
+#### 4. Results
   - Estimated Densities
     - Game Score
     - Total Moves
   - Relationship between Moves and Score
   - Kaplan-Meyer Survival Curve
-- Conclusion and Future Considerations
+
+#### 5. Conclusion and Future Considerations
 
 <a id="about-section"/>
 
@@ -74,6 +76,8 @@ The game is played on a 4x4 tile board, where tile numbers increase as identical
      - (1) full of tiles AND
      - (2) none of the tiles can be combined by a move in any direction
 
+
+<a id="code-section"/>
 
 ## Coding the Game Functionalities in R
 
@@ -298,7 +302,7 @@ I programmed 4 strategies to compare performance in simulated games against diff
     - If any move in the sequence doesn't change the board, the next preferred move is up
       - If that doesn't change it either, moving left is the last resort
 
-
+<a id="sim-section"/>
 
 ### 🧑🏼‍💻 Simulating Games of 2048
 
