@@ -34,7 +34,7 @@ My simulation study aims to learn how different strategies perform as the probab
 
 #### 3. [Simulating](#sim-section) Games of 2048
 
-#### 4. Results
+#### 4. [Results](#results-section)
   - Estimated Densities
     - Game Score
     - Total Moves
@@ -369,6 +369,8 @@ for (p in p_gen_values) {
 One of the simulated games reached the 2048 tile! The final board is shown below.
 
 ![break](/Plots/sim2048.JPEG?raw=true "Break")
+
+<a id="results-section"/>
 
 ## Results
 
