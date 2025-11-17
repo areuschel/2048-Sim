@@ -27,7 +27,7 @@ My simulation study aims to learn how different strategies perform as the probab
   - Game Origin
   - Rules and Playing the Game
 
-#### 2. [Coding](#game-section) the Game Functionalities in R
+#### 2. [Coding](#code-section) the Game Functionalities in R
   - Generate Starting Board
   - Horizontal and Lateral Movements with Merges
   - New Tile Random Generation
